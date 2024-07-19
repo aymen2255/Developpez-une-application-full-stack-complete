@@ -1,0 +1,43 @@
+package com.openclassrooms.mddapi.controllers;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.openclassrooms.mddapi.dtos.theme.ThemeDTO;
+import com.openclassrooms.mddapi.dtos.theme.ThemesDTO;
+import com.openclassrooms.mddapi.entities.Theme;
+import com.openclassrooms.mddapi.services.theme.ThemeService;
+
+import lombok.RequiredArgsConstructor;
+
+@RestController
+@RequestMapping("/api")
+@RequiredArgsConstructor
+public class ThemeController {
+
+	private final ThemeService themeService;
+	private final ModelMapper modelMapper;
+
+	@GetMapping("/themes")
+	public ResponseEntity<ThemesDTO> getAllThemes() {
+		List<Theme> themes = themeService.getAllThemes();
+
+		List<ThemeDTO> listThemeDTO = new ArrayList<>(themes.size());
+
+		for (Theme theme : themes) {
+			ThemeDTO themeDTO = modelMapper.map(theme, ThemeDTO.class);
+			listThemeDTO.add(themeDTO);
+		}
+
+		ThemesDTO themesDTO = new ThemesDTO();
+		themesDTO.setThemes(listThemeDTO);
+
+		return ResponseEntity.ok(themesDTO);
+	}
+}
