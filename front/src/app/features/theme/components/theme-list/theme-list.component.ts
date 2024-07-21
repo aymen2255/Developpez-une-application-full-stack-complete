@@ -9,17 +9,11 @@ import {ThemeService} from "../../services/theme.service";
 })
 export class ThemeListComponent implements OnInit {
 
-  private destroy$!: Subject<boolean>;
-
   public themes$ = this.themeService.all();
 
   constructor(private themeService: ThemeService) {
   }
 
   ngOnInit(): void {
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
   }
 }
