@@ -5,17 +5,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
-import { ThemeComponent } from './pages/theme/theme.component';
 import { HttpClientModule } from '@angular/common/http';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon'
+import {CoreModule} from "./core/core.module";
+import {ThemeModule} from "./features/theme/theme.module";
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ThemeComponent],
+  declarations: [AppComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatToolbarModule,
+    MatIconModule,
+    CoreModule,
+    ThemeModule
   ],
   providers: [],
   bootstrap: [AppComponent],
