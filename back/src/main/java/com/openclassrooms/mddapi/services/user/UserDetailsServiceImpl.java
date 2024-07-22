@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.openclassrooms.mddapi.Exception.EntityNotFoundException;
+import com.openclassrooms.mddapi.entities.User;
 import com.openclassrooms.mddapi.repositories.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -18,10 +18,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-
-		UserDetails user = (UserDetails) userRepository.findByEmail(email)
-				.orElseThrow(() -> new EntityNotFoundException("User not found"));
-		return user;
+		User user = userRepository.findByEmail(email);
+		if (user != null) {
+		      return user;
+		    }
+		throw new UsernameNotFoundException("User  not found");
 	}
 
 }
