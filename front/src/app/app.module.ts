@@ -12,6 +12,7 @@ import {CoreModule} from "./core/core.module";
 import {ThemeModule} from "./features/theme/theme.module";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
+import {AuthModule} from "./features/auth/auth.module";
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -26,7 +27,8 @@ import {MatListModule} from "@angular/material/list";
     CoreModule,
     ThemeModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent],

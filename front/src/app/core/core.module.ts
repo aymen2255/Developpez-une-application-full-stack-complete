@@ -7,10 +7,13 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatListModule} from "@angular/material/list";
+import { MeComponent } from './components/me/me.component';
 
 @NgModule({
   declarations: [
 
+  
+    MeComponent
   ],
   imports: [
     CommonModule,
