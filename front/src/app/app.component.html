@@ -1,2 +1,36 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
+<!--<app-header></app-header>-->
+<!--<router-outlet></router-outlet>-->
+
+<mat-toolbar class="nav-bar">
+  <img src="assets/logo_p6.png" alt="Logo" class="logo">
+  <span class="spacer"></span>
+  <nav class="nav-links">
+    <a mat-list-item routerLink="">Articles</a>
+    <a mat-list-item routerLink="/themes">Thèmes</a>
+    <a mat-list-item class="account-icon" routerLink="">
+      <mat-icon aria-hidden="false" aria-label="account icon">person_outline</mat-icon>
+    </a>
+  </nav>
+  <button mat-icon-button (click)="sidenav.toggle()" class="menu-button">
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container nav-mobile">
+  <mat-sidenav #sidenav  class="sidenav" mode="over" position="end">
+    <mat-nav-list class="side-nav-links">
+        <div>
+          <a mat-list-item routerLink="">Articles</a>
+          <a mat-list-item routerLink="/themes">Thèmes</a>
+          <div class="last-link">
+            <a class="account-icon" routerLink="">
+              <mat-icon aria-hidden="false" aria-label="account icon">person_outline</mat-icon>
+            </a>
+          </div>
+        </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -10,6 +10,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon'
 import {CoreModule} from "./core/core.module";
 import {ThemeModule} from "./features/theme/theme.module";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -22,7 +24,9 @@ import {ThemeModule} from "./features/theme/theme.module";
     MatToolbarModule,
     MatIconModule,
     CoreModule,
-    ThemeModule
+    ThemeModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent],
