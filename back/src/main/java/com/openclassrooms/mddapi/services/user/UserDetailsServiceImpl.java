@@ -1,10 +1,12 @@
 package com.openclassrooms.mddapi.services.user;
 
+import java.util.ArrayList;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
+import com.openclassrooms.mddapi.Exception.UserAlreadyExistsException;
 import com.openclassrooms.mddapi.entities.User;
 import com.openclassrooms.mddapi.repositories.UserRepository;
 
@@ -19,10 +21,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		User user = userRepository.findByEmail(email);
-		if (user != null) {
-		      return user;
-		    }
-		throw new UsernameNotFoundException("User  not found");
+		if (user == null) {
+			throw new UserAlreadyExistsException("User already exists.");
+		}
+		
+		return new org.springframework.security.core.userdetails.User(
+                user.getEmail(), user.getPassword(), new ArrayList<>());
+
 	}
 
 }

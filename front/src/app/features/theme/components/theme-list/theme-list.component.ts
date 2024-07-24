@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Subject} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {ThemeService} from "../../services/theme.service";
+import {Theme} from "../../interfaces/theme.interface";
+import {Themes} from "../../interfaces/themes.interface";
 
 @Component({
   selector: 'app-theme-list',
@@ -9,7 +11,7 @@ import {ThemeService} from "../../services/theme.service";
 })
 export class ThemeListComponent implements OnInit {
 
-  public themes$ = this.themeService.all();
+  public themes$: Observable<Theme[]> = this.themeService.all();
 
   constructor(private themeService: ThemeService) {
   }

@@ -1,5 +1,5 @@
 <div >
-  <ul *ngFor="let theme of (themes$ | async)?.themes">
+  <ul *ngFor="let theme of themes$ | async">
     <li>
       <h2>{{ theme.id }}</h2>
       <h2>{{ theme.name }}</h2>

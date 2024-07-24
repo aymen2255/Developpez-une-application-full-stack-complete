@@ -4,16 +4,12 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.openclassrooms.mddapi.Exception.UserAlreadyExistsException;
 import com.openclassrooms.mddapi.dtos.auth.AuthentificationRequest;
 import com.openclassrooms.mddapi.entities.User;
 import com.openclassrooms.mddapi.repositories.UserRepository;
 import com.openclassrooms.mddapi.util.JWTService;
-
 import lombok.RequiredArgsConstructor;
-
-import org.springframework.security.core.Authentication;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 @Service
@@ -34,9 +30,7 @@ public class AuthentificationServiceImpl implements AuthentificationService {
 	@Override
 	public User register(User user) {
 
-		User existingUser = userRepository.findByEmail(user.getEmail());
-
-		if (existingUser != null) {
+		if (userRepository.existsByEmail(user.getEmail())) {
 			throw new UserAlreadyExistsException("User already exists.");
 		}
 
@@ -59,16 +53,16 @@ public class AuthentificationServiceImpl implements AuthentificationService {
 	public String login(AuthentificationRequest authenticationRequest) {
 		try {
 			// Authenticate the user using the email and password
-			Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
 					authenticationRequest.getEmail(), authenticationRequest.getPassword()));
 
-			User user = (User) authentication.getPrincipal();
+			User user = userRepository.findByEmail(authenticationRequest.getEmail());
 
 			return jwtService.generateToken(user);
 
 		} catch (BadCredentialsException e) {
 
-			throw new BadCredentialsException("Invalid username or password");
+			throw new BadCredentialsException("Invalid username or passwordg");
 		}
 	}
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';;
 import { environment } from 'src/environments/environment';
-import {Themes} from "../interfaces/themes.interface";
+import {Theme} from "../interfaces/theme.interface";
 
 
 @Injectable({
@@ -10,10 +10,10 @@ import {Themes} from "../interfaces/themes.interface";
 })
 export class ThemeService {
 
-  private pathService = environment.baseUrl +'api/themes';
+  private pathService = 'api/themes';
   constructor(private httpClient: HttpClient) { }
 
-  public all(): Observable<Themes> {
-    return this.httpClient.get<Themes>(this.pathService);
+  public all(): Observable<Theme[]> {
+    return this.httpClient.get<Theme[]>(this.pathService);
   }
 }
