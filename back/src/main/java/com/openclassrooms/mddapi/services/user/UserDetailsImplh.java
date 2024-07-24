@@ -15,7 +15,7 @@ import lombok.Getter;
 @Builder
 @AllArgsConstructor
 @Getter
-public class UserDetailsImpl implements UserDetails {
+public class UserDetailsImplh implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 
@@ -68,14 +68,14 @@ public class UserDetailsImpl implements UserDetails {
 		return true;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		UserDetailsImpl user = (UserDetailsImpl) o;
-		return Objects.equals(id, user.id);
-	}
+//	@Override
+//	public boolean equals(Object o) {
+//		if (this == o)
+//			return true;
+//		if (o == null || getClass() != o.getClass())
+//			return false;
+//		UserDetailsImpl user = (UserDetailsImpl) o;
+//		return Objects.equals(id, user.id);
+//	}
 
 }
