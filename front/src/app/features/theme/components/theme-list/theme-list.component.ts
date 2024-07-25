@@ -11,7 +11,7 @@ import {Themes} from "../../interfaces/themes.interface";
 })
 export class ThemeListComponent implements OnInit {
 
-  public themes$: Observable<Theme[]> = this.themeService.all();
+  public themes$: Observable<Themes> = this.themeService.all();
 
   constructor(private themeService: ThemeService) {
   }

@@ -2,10 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
-import {SessionService} from "../../../../core/services/session.service";
 import {RegisterRequest} from "../../interfaces/registerRequest.interface";
 import {AuthSuccess} from "../../interfaces/authSuccess.interface";
-import {User} from "../../../../core/interfaces/user.interface";
 
 @Component({
   selector: 'app-register',
@@ -24,8 +22,7 @@ export class RegisterComponent {
 
   constructor(private authService: AuthService,
               private fb: FormBuilder,
-              private router: Router,
-              private sessionService: SessionService) {
+              private router: Router) {
   }
 
   public submit(): void {
