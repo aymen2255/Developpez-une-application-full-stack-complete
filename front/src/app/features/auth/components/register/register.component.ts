@@ -4,6 +4,7 @@ import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {RegisterRequest} from "../../interfaces/registerRequest.interface";
 import {AuthSuccess} from "../../interfaces/authSuccess.interface";
+import {TokenService} from "../../../../core/services/token.service";
 
 @Component({
   selector: 'app-register',
@@ -24,7 +25,11 @@ export class RegisterComponent {
 
   constructor(private authService: AuthService,
               private fb: FormBuilder,
+              private tokenService: TokenService,
               private router: Router) {
+    if (this.tokenService.isTokenValid()) {
+      this.router.navigate(['themes']);
+    }
   }
 
   public submit(): void {

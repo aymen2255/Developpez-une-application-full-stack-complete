@@ -25,6 +25,9 @@ export class LoginComponent {
               private fb: FormBuilder,
               private router: Router,
               private tokenService: TokenService) {
+    if (this.tokenService.isTokenValid()) {
+      this.router.navigate(['themes']);
+    }
   }
 
   public submit(): void {
