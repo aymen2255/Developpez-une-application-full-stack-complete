@@ -12,12 +12,14 @@ import {AuthSuccess} from "../../interfaces/authSuccess.interface";
 })
 export class RegisterComponent {
 
+  public hide = true;
   public onError = false;
+  private passwordRegex = /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=.*[@$!%*#?&^_-])(?=\D*\d).{8,}$/;
 
   public form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
-    username: ['', [Validators.required, Validators.min(3)]],
-    password: ['', [Validators.required, Validators.min(3)]]
+    username: ['', [Validators.required, Validators.min(3), Validators.maxLength(20)]],
+    password: ['', [Validators.required, Validators.min(8), Validators.maxLength(20), Validators.pattern(this.passwordRegex)]]
   });
 
   constructor(private authService: AuthService,
