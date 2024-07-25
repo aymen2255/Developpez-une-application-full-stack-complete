@@ -7,11 +7,20 @@ import {AuthGuard} from "./core/guards/auth-guard";
 // to manage unauthenticated user to access private routes
 const routes: Routes = [
   {
+    path: '',
+    component: HomeComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'themes',
     loadChildren: () => import('./features/theme/theme.module').then((m => m.ThemeModule)),
     canActivate: [AuthGuard]
   },
-  {path: '', component: HomeComponent, canActivate: [AuthGuard]},
+  {
+    path: 'profile',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule)
+  },
 ];
 
 @NgModule({

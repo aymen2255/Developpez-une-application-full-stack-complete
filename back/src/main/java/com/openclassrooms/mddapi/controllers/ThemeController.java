@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +37,7 @@ public class ThemeController {
 			ThemeDTO themeDTO = modelMapper.map(theme, ThemeDTO.class);
 			listThemeDTO.add(themeDTO);
 		}
-
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		ThemesDTO themesDTO = new ThemesDTO();
 		themesDTO.setThemes(listThemeDTO);
 
