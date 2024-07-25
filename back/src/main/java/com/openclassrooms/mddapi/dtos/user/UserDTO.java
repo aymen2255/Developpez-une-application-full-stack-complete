@@ -20,7 +20,7 @@ public class UserDTO {
 
 	private String email;
 
-	private String name;
+	private String username;
 
 	@JsonFormat(pattern = "yyyy/MM/dd")
 	@JsonProperty(value = "created_at")
