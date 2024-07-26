@@ -14,6 +14,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 import {AuthModule} from "./features/auth/auth.module";
 import {HttpTokenInterceptor} from './core/interceptors/http-token-interceptor';
+import {ArticleModule} from "./features/article/article.module";
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -29,7 +30,8 @@ import {HttpTokenInterceptor} from './core/interceptors/http-token-interceptor';
     ThemeModule,
     MatSidenavModule,
     MatListModule,
-    AuthModule
+    AuthModule,
+    ArticleModule
   ],
   providers: [
     HttpClient,
