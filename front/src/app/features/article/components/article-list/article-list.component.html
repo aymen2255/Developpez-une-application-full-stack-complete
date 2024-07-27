@@ -1,8 +1,29 @@
-<div >
-  <ul *ngFor="let article of (articles$ | async)?.articles">
-    <li>
-      <h2>{{ article.id }}</h2>
-      <h2>{{ article.title }}</h2>
-    </li>
-  </ul>
+<div class="articles-header">
+  <button mat-raised-button color="primary" type="button" class="create-button" routerLink="create">
+    Créer un article
+  </button>
+  <button type="button" class="sort-button">
+    <span>Trier par </span>
+  </button>
 </div>
+
+
+<div class="article-list">
+  <div *ngFor="let article of (articles$ | async)?.articles" class="article-item">
+    <mat-card class="card-class" appearance="outlined">
+      <mat-card-header class="card-header">
+        <mat-card-title>{{ article.title }}</mat-card-title>
+        <div class="sub-header">
+          <mat-card-subtitle class="card-subtitle">{{ article.created_at | date:'longDate' }}</mat-card-subtitle>
+          <mat-card-subtitle class="card-subtitle">{{ article.author.username }}</mat-card-subtitle>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ article.content }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+
+

@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { ArticleRoutingModule } from './article-routing.module';
 import {ArticleListComponent} from "./components/article-list/article-list.component";
+import {MatCardModule} from "@angular/material/card";
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -11,7 +14,10 @@ import {ArticleListComponent} from "./components/article-list/article-list.compo
   ],
   imports: [
     CommonModule,
-    ArticleRoutingModule
+    ArticleRoutingModule,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule
   ]
 })
 export class ArticleModule { }
