@@ -4,7 +4,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import com.openclassrooms.mddapi.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Data;
@@ -24,9 +23,6 @@ public class CreateArticleDTO {
 		
     @NotNull
 	private String content;
-    
-    @NotNull(message = "Author is required")
-    private User author;
     
     @NotNull(message = "Theme is required")
     private Integer themeId;
