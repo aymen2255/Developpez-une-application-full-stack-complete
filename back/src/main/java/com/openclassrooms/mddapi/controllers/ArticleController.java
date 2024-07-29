@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.openclassrooms.mddapi.dtos.article.ArticleDTO;
@@ -47,7 +48,7 @@ public class ArticleController {
 	}
 
 	@PostMapping("/article/create")
-	public ResponseEntity<MessageResponseDTO> createArticle(@Valid @ModelAttribute CreateArticleDTO articlelDTO, Authentication authentication) {
+	public ResponseEntity<MessageResponseDTO> createArticle(@Valid @RequestBody CreateArticleDTO articlelDTO, Authentication authentication) {
 
 		articleService.createArticle(articlelDTO, authentication.getName());
 
