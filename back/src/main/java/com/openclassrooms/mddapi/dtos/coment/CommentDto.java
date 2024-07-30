@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.openclassrooms.mddapi.dtos.user.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,13 +21,10 @@ public class CommentDto {
 
 	@NotBlank(message = "Message is required")
 	@Size(max = 2000)
-	private String message;
+	private String content;
 
 	@NotNull(message = "Author is required")
-	private String auteur;
-
-	@NotNull(message = "Article is required")
-	private Integer articleId;
+	private UserDTO author;
 
 	@JsonFormat(pattern = "yyyy/MM/dd")
 	@JsonProperty(value = "created_at")

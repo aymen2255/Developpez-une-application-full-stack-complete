@@ -54,7 +54,7 @@ public class User {
 	@Builder.Default
 	private List<Article> articles = new ArrayList<>();
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	@Builder.Default
 	private List<Comment> comments = new ArrayList<>();
 	

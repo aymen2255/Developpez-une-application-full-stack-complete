@@ -42,7 +42,7 @@ public class Comment {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "author_id", nullable = false)
-	private User user;
+	private User author;
 
 	@Column(name = "created_at", updatable = false, columnDefinition = "TIMESTAMP")
 	private Timestamp createdAt;
