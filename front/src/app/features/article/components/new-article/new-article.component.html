@@ -2,7 +2,7 @@
 <form class="create-article-form" [formGroup]="articleForm" (ngSubmit)="onSubmit()">
 <h2>Créer un nouvel article</h2>
   <mat-form-field appearance="outline">
-    <mat-label>Thèmes</mat-label>
+    <mat-label>Sélectionner un thème</mat-label>
     <mat-select formControlName="themeId">
       <mat-option *ngFor="let theme of (themes$ | async)?.themes"
                   [value]="theme.id">        {{ theme.name }}      </mat-option>
@@ -13,7 +13,7 @@
 
 
   <mat-form-field appearance="outline">
-    <mat-label>Title</mat-label>
+    <mat-label>Titre de l'article</mat-label>
     <input matInput formControlName="title"/>
     <mat-error *ngIf="articleForm.get('title')?.hasError('required')">Le titre de l'article est requis</mat-error>
   </mat-form-field>
@@ -21,7 +21,7 @@
 
 
   <mat-form-field appearance="outline">
-    <mat-label>Content</mat-label>
+    <mat-label>Contenu de l'article</mat-label>
     <textarea matInput rows="8" formControlName="content" data-cy="content-textarea"></textarea>
     <mat-error *ngIf="articleForm.get('content')?.hasError('required')">Le contenu de l'article est requis</mat-error>
   </mat-form-field>

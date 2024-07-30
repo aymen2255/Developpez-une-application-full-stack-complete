@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable} from "rxjs";
 import {ArticleService} from "../../services/article.service";
-import {Articles} from "../../interfaces/articles.interface";
+import {Article} from "../../interfaces/article.interface";
 
 @Component({
   selector: 'app-article-list',
@@ -10,12 +9,30 @@ import {Articles} from "../../interfaces/articles.interface";
 })
 export class ArticleListComponent implements OnInit {
 
-  public articles$: Observable<Articles> = this.articleService.all();
+  // public articles$: Observable<Articles> = this.articleService.all();
+  articles: Article[] = [];
+  sortAscending: boolean = false; // Variable pour suivre l'ordre de tri
 
   constructor(private articleService: ArticleService) {
   }
 
   ngOnInit(): void {
+    this.articleService.all().subscribe(response => {
+      this.articles = response.articles;
+    });
   }
 
+  sortArticles(): void {
+    this.articles.sort((a, b) => {
+      const dateA = new Date(a.created_at).getTime();
+      const dateB = new Date(b.created_at).getTime();
+
+      if (this.sortAscending) {
+        return dateA - dateB;
+      } else {
+        return dateB - dateA;
+      }
+    });
+    this.sortAscending = !this.sortAscending;
+  }
 }

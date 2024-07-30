@@ -2,14 +2,15 @@
   <button mat-raised-button color="primary" type="button" class="create-button" routerLink="create">
     Créer un article
   </button>
-  <button type="button" class="sort-button">
+  <button type="button" class="sort-button"  (click)="sortArticles()">
     <span>Trier par </span>
   </button>
 </div>
 
 
 <div class="article-list">
-  <div *ngFor="let article of (articles$ | async)?.articles" class="article-item">
+  <div *ngIf="articles.length === 0">Aucun article trouvé.</div>
+  <div *ngFor="let article of articles" class="article-item">
     <mat-card class="card-class" appearance="outlined">
       <mat-card-header class="card-header">
         <mat-card-title>{{ article.title }}</mat-card-title>
