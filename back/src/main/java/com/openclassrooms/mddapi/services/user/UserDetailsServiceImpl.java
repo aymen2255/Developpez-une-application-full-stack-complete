@@ -22,7 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		User user = userRepository.findByEmail(email);
 		if (user == null) {
-			throw new UserAlreadyExistsException("User already exists.");
+			throw new UserAlreadyExistsException("User does not exists.");
 		}
 		
 		return new org.springframework.security.core.userdetails.User(

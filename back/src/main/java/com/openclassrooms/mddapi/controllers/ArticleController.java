@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +30,8 @@ public class ArticleController {
 	private final ModelMapper modelMapper;
 
 	@GetMapping("/articles")
-	public ResponseEntity<ArticlesDTO> getAllArticles() {
-		List<Article> articles = articleService.getAllArticles();
+	public ResponseEntity<ArticlesDTO> getAllArticles(Authentication authentication) {
+		List<Article> articles = articleService.getSubscribedArticles(authentication.getName());
 
 		List<ArticleDTO> listArticleDTO = new ArrayList<>(articles.size());
 

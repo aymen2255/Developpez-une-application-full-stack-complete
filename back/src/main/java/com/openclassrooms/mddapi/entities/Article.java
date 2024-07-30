@@ -50,7 +50,7 @@ public class Article {
     @JoinColumn(name = "theme_id", nullable = false)
     private Theme theme;
 
-	@OneToMany(mappedBy = "article")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "article")
 	@Builder.Default
 	private List<Comment> comments = new ArrayList<>();
 

@@ -23,9 +23,13 @@ public class ArticleServiceImpl implements ArticleService {
 	private final ModelMapper modelMapper;
 
 	@Override
-	public List<Article> getAllArticles() {
+	public List<Article> getSubscribedArticles(String email) {
 		
-		return articleRepository.findAll();
+		User user = userRepository.findByEmail(email);
+		if (user == null) {
+            throw new EntityNotFoundException("User not found");
+        }
+		return articleRepository.getSubscribedArticles(user.getId());
 	}
 
 	@Override

@@ -3,21 +3,17 @@ package com.openclassrooms.mddapi.entities;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
-
+import java.util.Set;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
-
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,10 +37,9 @@ public class Theme {
 	@OneToMany(mappedBy = "theme", fetch = FetchType.LAZY)
 	@Builder.Default
 	private List<Article> articles = new ArrayList<>();
-
-	@ManyToMany(mappedBy = "themes", fetch = FetchType.LAZY)
-	@Builder.Default
-	private List<User> users = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "theme")
+	private Set<Subscription> subscriptions;
 
 	@Column(name = "created_at", updatable = false, columnDefinition = "TIMESTAMP")
 	private Timestamp createdAt;

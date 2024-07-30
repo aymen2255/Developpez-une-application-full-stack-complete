@@ -6,7 +6,7 @@ import com.openclassrooms.mddapi.entities.Article;
 
 public interface ArticleService {
 	
-	List<Article> getAllArticles();
+	List<Article> getSubscribedArticles(String email);
 
 	Article createArticle(CreateArticleDTO articleDTO, String email);
 }

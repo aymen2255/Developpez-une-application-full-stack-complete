@@ -2,9 +2,8 @@ package com.openclassrooms.mddapi.entities;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,23 +13,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
-
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
-
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.JoinColumn;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "USERS", uniqueConstraints = { @UniqueConstraint(columnNames = "email") })
@@ -67,13 +57,9 @@ public class User {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	@Builder.Default
 	private List<Comment> comments = new ArrayList<>();
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @Builder.Default
-    @JoinTable(name = "SUBSCRIPTIONS",
-        joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "theme_id"))
-    private List<Theme> themes = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "user")
+	private Set<Subscription> subscriptions;
 
 	@PrePersist
 	public void onCreate() {
