@@ -10,12 +10,14 @@ import { NewArticleComponent } from './components/new-article/new-article.compon
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { DetailArticleComponent } from './components/detail-article/detail-article.component';
 
 
 @NgModule({
   declarations: [
     ArticleListComponent,
-    NewArticleComponent
+    NewArticleComponent,
+    DetailArticleComponent
   ],
   imports: [
     CommonModule,

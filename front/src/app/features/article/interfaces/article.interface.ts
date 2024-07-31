@@ -1,6 +1,5 @@
-import {Theme} from "../../theme/interfaces/theme.interface";
-import {User} from "../../../core/interfaces/user.interface";
 import {Author} from "./author.interface";
+import {Comment} from "./comment.interface";
 
 export interface Article {
   id: number,
@@ -10,4 +9,5 @@ export interface Article {
   created_at: Date,
   updated_at: Date
   theme_title: string;
+  comments: Comment[];
   }

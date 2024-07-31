@@ -21,4 +21,8 @@ export class ArticleService {
   public createArticle(article: Article): Observable<any> {
     return this.httpClient.post(`${this.pathService}/article/create`, article);
   }
+
+  public getArticleById(id: number): Observable<Article> {
+    return this.httpClient.get<Article>(`${this.pathService}/article/${id}`);
+  }
 }
