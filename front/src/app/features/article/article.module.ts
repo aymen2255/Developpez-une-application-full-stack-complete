@@ -11,6 +11,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { DetailArticleComponent } from './components/detail-article/detail-article.component';
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -19,15 +20,16 @@ import { DetailArticleComponent } from './components/detail-article/detail-artic
     NewArticleComponent,
     DetailArticleComponent
   ],
-  imports: [
-    CommonModule,
-    ArticleRoutingModule,
-    MatCardModule,
-    MatInputModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    MatSelectModule,
-    MatSnackBarModule
-  ]
+    imports: [
+        CommonModule,
+        ArticleRoutingModule,
+        MatCardModule,
+        MatInputModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        MatSelectModule,
+        MatSnackBarModule,
+        MatIconModule
+    ]
 })
 export class ArticleModule { }

@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ThemeDTO {
+public class ThemeResponseDTO {
 
 	private Integer id;
 

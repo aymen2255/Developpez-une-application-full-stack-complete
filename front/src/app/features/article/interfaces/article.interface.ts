@@ -1,13 +1,23 @@
 import {Author} from "./author.interface";
-import {Comment} from "./comment.interface";
+import {CommentResponse} from "./comment.interface";
+import {Theme} from "../../theme/interfaces/theme.interface";
+import {User} from "../../../core/interfaces/user.interface";
 
-export interface Article {
+export interface ArticleRequest {
   id: number,
-  author: Author,
+  title: string;
+  content: string,
+  theme_title: string;
+  themeId:number;
+  }
+
+export interface ArticleResponse {
+  id: number,
+  author: User,
   title: string;
   content: string,
   created_at: Date,
   updated_at: Date
-  theme_title: string;
-  comments: Comment[];
-  }
+  theme: Theme;
+  comments: CommentResponse[];
+}

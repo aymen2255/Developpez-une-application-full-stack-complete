@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.openclassrooms.mddapi.dtos.theme.ThemeDTO;
+import com.openclassrooms.mddapi.dtos.theme.ThemeResponseDTO;
 import com.openclassrooms.mddapi.dtos.theme.ThemesDTO;
 import com.openclassrooms.mddapi.entities.Theme;
 import com.openclassrooms.mddapi.services.theme.ThemeService;
@@ -27,10 +27,10 @@ public class ThemeController {
 	public ResponseEntity<ThemesDTO> getAllThemes() {
 		List<Theme> themes = themeService.getAllThemes();
 
-		List<ThemeDTO> listThemeDTO = new ArrayList<>(themes.size());
+		List<ThemeResponseDTO> listThemeDTO = new ArrayList<>(themes.size());
 
 		for (Theme theme : themes) {
-			ThemeDTO themeDTO = modelMapper.map(theme, ThemeDTO.class);
+			ThemeResponseDTO themeDTO = modelMapper.map(theme, ThemeResponseDTO.class);
 			listThemeDTO.add(themeDTO);
 		}
 

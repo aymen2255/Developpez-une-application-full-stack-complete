@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ArticleService} from "../../services/article.service";
-import {Article} from "../../interfaces/article.interface";
+import {ArticleResponse} from "../../interfaces/article.interface";
 
 @Component({
   selector: 'app-article-list',
@@ -10,7 +10,7 @@ import {Article} from "../../interfaces/article.interface";
 export class ArticleListComponent implements OnInit {
 
   // public articles$: Observable<Articles> = this.articleService.all();
-  articles: Article[] = [];
+  articles: ArticleResponse[] = [];
   sortAscending: boolean = false; // Variable pour suivre l'ordre de tri
 
   constructor(private articleService: ArticleService) {

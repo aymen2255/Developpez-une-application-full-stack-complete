@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Articles} from "../interfaces/articles.interface";
-import {Article} from "../interfaces/article.interface";
+import {CommentRequest} from "../interfaces/comment.interface";
+import {ArticleRequest, ArticleResponse} from "../interfaces/article.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +14,19 @@ export class ArticleService {
   constructor(private httpClient: HttpClient) {
   }
 
-  public all(): Observable<{ articles: Article[] }> {
-    return this.httpClient.get<{ articles: Article[] }>(`${this.pathService}/articles`);
+  public all(): Observable<{ articles: ArticleResponse[] }> {
+    return this.httpClient.get<{ articles: ArticleResponse[] }>(`${this.pathService}/articles`);
   }
 
-  public createArticle(article: Article): Observable<any> {
-    return this.httpClient.post(`${this.pathService}/article/create`, article);
+  public createArticle(article: ArticleRequest): Observable<ArticleRequest> {
+    return this.httpClient.post<ArticleRequest>(`${this.pathService}/article/create`, article);
   }
 
-  public getArticleById(id: number): Observable<Article> {
-    return this.httpClient.get<Article>(`${this.pathService}/article/${id}`);
+  public getArticleById(id: number): Observable<ArticleResponse> {
+    return this.httpClient.get<ArticleResponse>(`${this.pathService}/article/${id}`);
+  }
+
+  public addComment(id: number, commentRequest: CommentRequest): Observable<CommentRequest> {
+    return this.httpClient.post<CommentRequest>(`${this.pathService}/comment/add/${id}`, commentRequest);
   }
 }

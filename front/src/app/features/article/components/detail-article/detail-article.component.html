@@ -6,6 +6,7 @@
         <div class="sub-header">
           <mat-card-subtitle class="card-subtitle">{{ article.created_at | date:'longDate' }}</mat-card-subtitle>
           <mat-card-subtitle class="card-subtitle">{{ article.author.username }}</mat-card-subtitle>
+          <mat-card-subtitle class="card-subtitle">{{ article.theme.name }}</mat-card-subtitle>
         </div>
       </mat-card-header>
       <mat-card-content>
@@ -13,7 +14,9 @@
       </mat-card-content>
     </mat-card>
   </div>
+
   <hr>
+
   <div class="comments-content">
     <div class="comments-content-header">
       Commentaires
@@ -29,6 +32,20 @@
       </div>
     </div>
   </div>
+
+  <form class="add-comment-form" [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Contenu de l'article</mat-label>
+      <textarea matInput rows="8" formControlName="content" data-cy="content-textarea"></textarea>
+      <mat-error *ngIf="commentForm.get('content')?.hasError('required')">Le contenu de l'article est requis</mat-error>
+    </mat-form-field>
+    <div>
+      <button fxFlex="10" mat-button type="submit" class="rotate-button">
+        <mat-icon color="primary">send</mat-icon>
+      </button>
+    </div>
+  </form>
+
 </div>
 <ng-template #loading>
   <p>Chargement...</p>

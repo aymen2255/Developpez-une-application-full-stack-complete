@@ -13,7 +13,7 @@ import lombok.Builder;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateArticleDTO {
+public class ArticleRequestDTO {
 	
 	@NotNull
 	@NotEmpty

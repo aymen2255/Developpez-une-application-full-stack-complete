@@ -4,7 +4,7 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import com.openclassrooms.mddapi.Exception.EntityNotFoundException;
-import com.openclassrooms.mddapi.dtos.article.CreateArticleDTO;
+import com.openclassrooms.mddapi.dtos.article.ArticleRequestDTO;
 import com.openclassrooms.mddapi.entities.Article;
 import com.openclassrooms.mddapi.entities.Theme;
 import com.openclassrooms.mddapi.entities.User;
@@ -33,7 +33,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public Article createArticle(CreateArticleDTO articleDTO, String email) {
+	public Article createArticle(ArticleRequestDTO articleDTO, String email) {
 
 		User author = userRepository.findByEmail(email);
 		if (author == null) {

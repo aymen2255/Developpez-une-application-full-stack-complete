@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ArticlesDTO {
-	private List<ArticleDTO> articles;
+	private List<ArticleResponseDTO> articles;
 }

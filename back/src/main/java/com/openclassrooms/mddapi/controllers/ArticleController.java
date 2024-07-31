@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.openclassrooms.mddapi.dtos.article.ArticleDTO;
+import com.openclassrooms.mddapi.dtos.article.ArticleResponseDTO;
 import com.openclassrooms.mddapi.dtos.article.ArticlesDTO;
-import com.openclassrooms.mddapi.dtos.article.CreateArticleDTO;
+import com.openclassrooms.mddapi.dtos.article.ArticleRequestDTO;
 import com.openclassrooms.mddapi.dtos.response.MessageResponseDTO;
 import com.openclassrooms.mddapi.entities.Article;
 import com.openclassrooms.mddapi.services.article.ArticleService;
@@ -34,10 +34,11 @@ public class ArticleController {
 	public ResponseEntity<ArticlesDTO> getAllArticles(Authentication authentication) {
 		List<Article> articles = articleService.getSubscribedArticles(authentication.getName());
 
-		List<ArticleDTO> listArticleDTO = new ArrayList<>(articles.size());
+		List<ArticleResponseDTO> listArticleDTO = new ArrayList<>(articles.size());
 
 		for (Article article : articles) {
-			ArticleDTO articleDTO = modelMapper.map(article, ArticleDTO.class);
+			ArticleResponseDTO articleDTO = modelMapper.map(article, ArticleResponseDTO.class);
+//			articleDTO.setAuthorName("dddd");
 			listArticleDTO.add(articleDTO);
 		}
 
@@ -48,7 +49,7 @@ public class ArticleController {
 	}
 
 	@PostMapping("/article/create")
-	public ResponseEntity<MessageResponseDTO> createArticle(@Valid @RequestBody CreateArticleDTO articlelDTO, Authentication authentication) {
+	public ResponseEntity<MessageResponseDTO> createArticle(@Valid @RequestBody ArticleRequestDTO articlelDTO, Authentication authentication) {
 
 		articleService.createArticle(articlelDTO, authentication.getName());
 
@@ -59,10 +60,10 @@ public class ArticleController {
 	}
 	
 	@GetMapping("/article/{id}")
-	public ResponseEntity<ArticleDTO> getRentalById(@PathVariable Integer id) {
+	public ResponseEntity<ArticleResponseDTO> getRentalById(@PathVariable Integer id) {
 
 		Article article = articleService.getArticleById(id);
-		ArticleDTO articleDTO = modelMapper.map(article, ArticleDTO.class);
+		ArticleResponseDTO articleDTO = modelMapper.map(article, ArticleResponseDTO.class);
 
 		return ResponseEntity.ok(articleDTO);
 	}
