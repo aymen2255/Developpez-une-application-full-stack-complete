@@ -4,6 +4,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
 import {User} from "../../interfaces/user.interface";
 import {UserService} from "../../services/user.service";
+import {TokenService} from "../../services/token.service";
 
 @Component({
   selector: 'app-me',
@@ -19,7 +20,8 @@ export class MeComponent implements OnInit {
     private fb: FormBuilder,
     private matSnackBar: MatSnackBar,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private tokenService: TokenService
   ) {
   }
 
@@ -41,6 +43,9 @@ export class MeComponent implements OnInit {
         console.error('Erreur lors de la récupération des informations de l\'utilisateur', error);
       }
     );
+  }
+  onLogout() {
+    this.tokenService.logout();
   }
 
   public submit(): void {
