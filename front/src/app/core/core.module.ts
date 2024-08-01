@@ -8,11 +8,14 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatListModule} from "@angular/material/list";
 import { MeComponent } from './components/me/me.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatCardModule} from "@angular/material/card";
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 @NgModule({
   declarations: [
 
-  
+
     MeComponent
   ],
   imports: [
@@ -23,7 +26,11 @@ import { MeComponent } from './components/me/me.component';
     MatIconModule,
     MatMenuModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    FormsModule
   ],
   exports: [
 

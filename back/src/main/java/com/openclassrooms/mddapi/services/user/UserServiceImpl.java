@@ -1,28 +1,22 @@
 package com.openclassrooms.mddapi.services.user;
 
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-
 import com.openclassrooms.mddapi.entities.User;
-
+import com.openclassrooms.mddapi.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
+	
+	private final UserRepository userRepository;
 
 	@Override
 	public User getUser() {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-		if (authentication == null || !authentication.isAuthenticated()
-				|| authentication.getPrincipal().equals("anonymousUser")) {
-			throw new UsernameNotFoundException("No logged in user found");
-		}
-
-		return (User) authentication.getPrincipal();
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return userRepository.findByEmail(userDetails.getUsername());
 	}
 
 }

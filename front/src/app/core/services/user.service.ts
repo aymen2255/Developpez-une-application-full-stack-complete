@@ -8,12 +8,13 @@ import {User} from "../interfaces/user.interface";
 })
 export class UserService {
 
-  private pathService = 'api/user';
+  private pathService = 'api';
 
   constructor(private httpClient: HttpClient) {
   }
 
-  public getUserById(id: number): Observable<User> {
-    return this.httpClient.get<User>(`${this.pathService}/${id}`);
+  public getUser(): Observable<User> {
+    // return this.httpClient.get<User>(`${this.pathService}/${id}`);
+    return this.httpClient.get<User>(`${this.pathService}/auth/profile`);
   }
 }

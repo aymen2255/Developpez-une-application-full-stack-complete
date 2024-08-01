@@ -6,6 +6,8 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 })
 export class TokenService {
 
+  private jwtHelper = new JwtHelperService();
+
   set token(token: string) {
     localStorage.setItem('token', token);
   }
@@ -19,10 +21,9 @@ export class TokenService {
     if (!token) {
       return false;
     }
-    // decode the token
-    const jwtHelper = new JwtHelperService();
+
     // check expiry date
-    const isTokenExpired = jwtHelper.isTokenExpired(token);
+    const isTokenExpired = this.jwtHelper.isTokenExpired(token);
     if (isTokenExpired) {
       localStorage.clear();
       return false;
@@ -33,5 +34,12 @@ export class TokenService {
   isTokenNotValid() {
     return !this.isTokenValid();
   }
-
+  getUserIdFromToken(): string | null {
+    const token = this.token;
+    if (!token) {
+      return null;
+    }
+    const decodedToken = this.jwtHelper.decodeToken(token);
+    return decodedToken?.userId || null;
+  }
 }
