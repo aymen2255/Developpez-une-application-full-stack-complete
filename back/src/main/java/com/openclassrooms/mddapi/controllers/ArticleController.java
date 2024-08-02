@@ -38,7 +38,6 @@ public class ArticleController {
 
 		for (Article article : articles) {
 			ArticleResponseDTO articleDTO = modelMapper.map(article, ArticleResponseDTO.class);
-//			articleDTO.setAuthorName("dddd");
 			listArticleDTO.add(articleDTO);
 		}
 

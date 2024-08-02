@@ -46,6 +46,10 @@ export class TokenService {
     return decodedToken?.userId || null;
   }
 
+  updateToken(newToken: string) {
+    this.token = newToken;
+  }
+
   logout() {
     // Supprimer le token JWT du localStorage
     localStorage.removeItem('token');
