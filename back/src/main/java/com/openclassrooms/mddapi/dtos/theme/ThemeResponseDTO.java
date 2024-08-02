@@ -19,6 +19,8 @@ public class ThemeResponseDTO {
 	private Integer id;
 
 	private String name;
+	
+	private String description;
 
 	@JsonFormat(pattern = "yyyy/MM/dd")
 	@JsonProperty(value = "created_at")

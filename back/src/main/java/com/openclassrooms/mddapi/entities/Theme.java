@@ -33,6 +33,9 @@ public class Theme {
 
 	@Column(nullable = false, unique = true)
 	private String name;
+	
+	@Column(nullable = false, columnDefinition = "LONGTEXT")
+	private String description;
 
 	@OneToMany(mappedBy = "theme", fetch = FetchType.LAZY)
 	@Builder.Default

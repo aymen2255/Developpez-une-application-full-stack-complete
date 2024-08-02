@@ -15,6 +15,6 @@ export class UserService {
 
   public getUser(): Observable<User> {
     // return this.httpClient.get<User>(`${this.pathService}/${id}`);
-    return this.httpClient.get<User>(`${this.pathService}/auth/profile`);
+    return this.httpClient.get<User>(`${this.pathService}/auth/me`);
   }
 }
