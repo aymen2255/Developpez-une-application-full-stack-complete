@@ -16,4 +16,8 @@ export class SubscriptionService {
   public getSubscribedThemes(): Observable<{ themes: Theme[] }> {
     return this.httpClient.get <{ themes: Theme[] }>(`${this.pathService}/subscribed-themes`);
   }
+
+  public subscribeToTheme(themeId: number): Observable<any> {
+    return this.httpClient.post(`${this.pathService}/subscribe/${themeId}`, {themeId});
+  }
 }

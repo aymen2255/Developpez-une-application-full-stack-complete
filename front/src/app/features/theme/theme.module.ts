@@ -1,7 +1,9 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ThemeListComponent} from "./components/theme-list/theme-list.component";
-import { ThemeRoutingModule } from './theme-routing.module';
+import {ThemeRoutingModule} from './theme-routing.module';
+import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -9,7 +11,9 @@ import { ThemeRoutingModule } from './theme-routing.module';
   ],
   imports: [
     CommonModule,
-    ThemeRoutingModule
+    ThemeRoutingModule,
+    MatCardModule,
+    MatButtonModule
   ],
   exports: [
     ThemeListComponent

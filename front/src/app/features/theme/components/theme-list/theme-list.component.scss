@@ -1,3 +1,43 @@
-ul{
-  list-style: none;
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 150px;
+}
+
+.list-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 1500px;
+}
+
+.list-item {
+  flex: 1 1 calc(50% - 20px);
+  box-sizing: border-box;
+  margin: 10px;
+
+}
+
+mat-card-content {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+@media (max-width: 768px) {
+  .list-item {
+    flex: 1 1 100%;
+  }
+  .list-header {
+    display: none;
+  }
 }

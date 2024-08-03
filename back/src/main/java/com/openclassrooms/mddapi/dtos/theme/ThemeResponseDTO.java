@@ -21,6 +21,8 @@ public class ThemeResponseDTO {
 	private String name;
 	
 	private String description;
+	
+	private boolean isSubscribed;
 
 	@JsonFormat(pattern = "yyyy/MM/dd")
 	@JsonProperty(value = "created_at")
