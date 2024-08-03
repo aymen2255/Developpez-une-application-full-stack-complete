@@ -49,20 +49,34 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 		if (subscription != null) {
 			throw new SubscriptionAlreadyExistsException("Already subscribed");
 		}
-		
+
 		Subscription newSubscription = new Subscription();
 		newSubscription.setTheme(theme);
 		newSubscription.setUser(user);
-		
+
 		return subscriptionRepository.save(newSubscription);
 
 	}
-	
-	  public Set<Integer> getSubscribedThemeIds(Integer userId) {
-		  
-	        List<Subscription> subscriptions = subscriptionRepository.findByUserId(userId);
-	        return subscriptions.stream()
-	                .map(subscription -> subscription.getTheme().getId())
-	                .collect(Collectors.toSet());
-	    }
+
+	public Set<Integer> getSubscribedThemeIds(Integer userId) {
+
+		List<Subscription> subscriptions = subscriptionRepository.findByUserId(userId);
+		return subscriptions.stream().map(subscription -> subscription.getTheme().getId()).collect(Collectors.toSet());
+	}
+
+	@Override
+	public void unsubscribeUserFromTheme(Integer themeId) {
+
+		User user = userService.getUser();
+
+		Theme theme = themeRepository.findById(themeId)
+				.orElseThrow(() -> new EntityNotFoundException("Theme not found"));
+
+		Subscription subscription = subscriptionRepository.findOneByThemeAndUser(theme, user);
+
+		if (subscription != null) {
+			subscriptionRepository.delete(subscription);
+		}
+
+	}
 }

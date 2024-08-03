@@ -12,5 +12,7 @@ public interface SubscriptionService {
 	
 	Subscription subscribeToTheme(Integer themeId);
 	
+	void unsubscribeUserFromTheme(Integer themeId);
+	
 	Set<Integer> getSubscribedThemeIds(Integer userId);
 }

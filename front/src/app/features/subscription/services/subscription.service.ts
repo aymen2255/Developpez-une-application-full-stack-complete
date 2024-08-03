@@ -20,4 +20,8 @@ export class SubscriptionService {
   public subscribeToTheme(themeId: number): Observable<any> {
     return this.httpClient.post(`${this.pathService}/subscribe/${themeId}`, {themeId});
   }
+
+  public unsubscribeUserFromTheme(themeId: number): Observable<any> {
+    return this.httpClient.delete(`${this.pathService}/unsubscribe/${themeId}`);
+  }
 }

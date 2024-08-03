@@ -1,7 +1,7 @@
 <div class="Subscriptions">
   <h1 class="subscriptions-header">Abonnements</h1>
 
-  <div *ngIf="themes.length === 0">Aucun theme trouvé.</div>
+  <div *ngIf="themes.length === 0">Vous n'êtes abonné à aucun thème.</div>
   <div class="Subscriptions-content">
     <div *ngFor="let theme of themes" class="subscription-item">
       <mat-card class="card-class" appearance="outlined">
@@ -12,7 +12,7 @@
           <p>{{ theme.description }}</p>
         </mat-card-content>
         <mat-card-footer class="card-footer">
-          <button mat-raised-button color="primary" type="button" class="create-button" routerLink="create">
+          <button mat-raised-button color="primary" type="button" class="create-button" (click)="unsubscribeUserFromTheme(theme.id)">
             Se désabonner
           </button>
         </mat-card-footer>

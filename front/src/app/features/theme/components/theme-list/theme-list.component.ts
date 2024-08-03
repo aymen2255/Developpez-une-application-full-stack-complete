@@ -33,11 +33,19 @@ export class ThemeListComponent implements OnInit {
     this.subscriptionService.subscribeToTheme(themeId).subscribe(
       response => {
         this.matSnackBar.open('Article créé', 'Close', { duration: 3000 });
+        this.updateThemeSubscriptionStatus(themeId, true);
         console.log('Abonnement réussi', response);
       },
       error => {
         console.error('Erreur lors de l\'abonnement', error);
       }
     );
+  }
+
+  private updateThemeSubscriptionStatus(themeId: number, isSubscribed: boolean): void {
+    const theme = this.themes.find(t => t.id === themeId);
+    if (theme) {
+      theme.subscribed = isSubscribed;
+    }
   }
 }
