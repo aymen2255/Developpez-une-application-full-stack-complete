@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {Router} from "@angular/router";
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +9,13 @@ import {Router} from "@angular/router";
 export class TokenService {
 
   private jwtHelper = new JwtHelperService();
+  private loggedIn = new BehaviorSubject<boolean>(this.isTokenValid());
 
   constructor(private router: Router) {}
 
   set token(token: string) {
     localStorage.setItem('token', token);
+    this.loggedIn.next(this.isTokenValid());
   }
 
   get token() {
@@ -49,11 +52,14 @@ export class TokenService {
   updateToken(newToken: string) {
     this.token = newToken;
   }
+  get isLoggedIn(): Observable<boolean> {
+    return this.loggedIn.asObservable();
+  }
 
   logout() {
     // Supprimer le token JWT du localStorage
     localStorage.removeItem('token');
-
+    this.loggedIn.next(false);
     // Rediriger l'utilisateur vers la page de connexion
     this.router.navigate(['/login']);
   }

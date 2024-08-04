@@ -1,7 +1,4 @@
-<!--<app-header></app-header>-->
-<!--<router-outlet></router-outlet>-->
-
-<mat-toolbar class="nav-bar">
+<mat-toolbar class="nav-bar" *ngIf="isLoggedIn">
   <img src="assets/logo_p6.png" alt="Logo" class="logo">
   <span class="spacer"></span>
   <nav class="nav-links">

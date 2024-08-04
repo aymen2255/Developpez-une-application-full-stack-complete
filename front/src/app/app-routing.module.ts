@@ -9,8 +9,7 @@ import {MeComponent} from "./core/components/me/me.component";
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
-    canActivate: [AuthGuard]
+    component: HomeComponent
   },
   {
     path: 'themes',
