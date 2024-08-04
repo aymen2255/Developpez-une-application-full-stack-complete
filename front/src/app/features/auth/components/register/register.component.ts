@@ -36,7 +36,7 @@ export class RegisterComponent {
     const registerRequest = this.form.value as RegisterRequest;
     this.authService.register(registerRequest).subscribe(
       (response: AuthSuccess) => {
-        localStorage.setItem('token', response.token);
+        this.tokenService.token = response.token as string;
         this.router.navigate(['/themes']);
       },
       error => this.onError = true

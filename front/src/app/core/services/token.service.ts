@@ -61,6 +61,6 @@ export class TokenService {
     localStorage.removeItem('token');
     this.loggedIn.next(false);
     // Rediriger l'utilisateur vers la page de connexion
-    this.router.navigate(['/login']);
+    this.router.navigate(['']);
   }
 }
