@@ -32,7 +32,9 @@ a {
 .menu-button {
   display: none;
 }
-
+.active  {
+  color: blueviolet;
+}
 @media (max-width: 768px) {
   .menu-button {
     display: inline-block;

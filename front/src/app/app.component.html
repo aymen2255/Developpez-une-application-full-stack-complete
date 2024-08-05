@@ -3,9 +3,9 @@
   <span class="spacer"></span>
   <div>
     <nav class="nav-links">
-      <a mat-list-item routerLink="/articles">Articles</a>
-      <a mat-list-item routerLink="/themes">Thèmes</a>
-      <a mat-list-item class="account-icon" routerLink="/me">
+      <a mat-list-item routerLink="/articles" [ngClass]="{ 'active': currentRoute === '/articles' }">Articles</a>
+      <a mat-list-item routerLink="/themes" [ngClass]="{ 'active': currentRoute === '/themes' }">Thèmes</a>
+      <a mat-list-item class="account-icon" routerLink="/me" [ngClass]="{ 'active': currentRoute === '/me' }">
         <mat-icon aria-hidden="false" aria-label="account icon">person_outline</mat-icon>
       </a>
     </nav>
