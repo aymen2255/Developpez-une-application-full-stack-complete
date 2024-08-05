@@ -1,30 +1,32 @@
 <mat-toolbar class="nav-bar" *ngIf="isLoggedIn">
   <img src="assets/logo_p6.png" alt="Logo" class="logo">
   <span class="spacer"></span>
-  <nav class="nav-links">
-    <a mat-list-item routerLink="/articles">Articles</a>
-    <a mat-list-item routerLink="/themes">Thèmes</a>
-    <a mat-list-item class="account-icon" routerLink="/me">
-      <mat-icon aria-hidden="false" aria-label="account icon">person_outline</mat-icon>
-    </a>
-  </nav>
-  <button mat-icon-button (click)="sidenav.toggle()" class="menu-button">
-    <mat-icon>menu</mat-icon>
-  </button>
+  <div>
+    <nav class="nav-links">
+      <a mat-list-item routerLink="/articles">Articles</a>
+      <a mat-list-item routerLink="/themes">Thèmes</a>
+      <a mat-list-item class="account-icon" routerLink="/me">
+        <mat-icon aria-hidden="false" aria-label="account icon">person_outline</mat-icon>
+      </a>
+    </nav>
+    <button mat-icon-button (click)="sidenav.toggle()" class="menu-button">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenav-container nav-mobile">
-  <mat-sidenav #sidenav  class="sidenav" mode="over" position="end">
+  <mat-sidenav #sidenav class="sidenav" mode="over" position="end">
     <mat-nav-list class="side-nav-links">
-        <div>
-          <a mat-list-item routerLink="/articles">Articles</a>
-          <a mat-list-item routerLink="/themes">Thèmes</a>
-          <div class="last-link">
-            <a class="account-icon" routerLink="/me">
-              <mat-icon aria-hidden="false" aria-label="account icon">person_outline</mat-icon>
-            </a>
-          </div>
+      <div>
+        <a mat-list-item routerLink="/articles">Articles</a>
+        <a mat-list-item routerLink="/themes">Thèmes</a>
+        <div class="last-link">
+          <a class="account-icon" routerLink="/me">
+            <mat-icon aria-hidden="false" aria-label="account icon">person_outline</mat-icon>
+          </a>
         </div>
+      </div>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
