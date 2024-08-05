@@ -7,6 +7,7 @@ import {ArticleService} from "../../services/article.service";
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-new-article',
@@ -23,7 +24,8 @@ export class NewArticleComponent implements OnInit {
     private articleService: ArticleService,
     private themeService: ThemeService,
     private matSnackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {
   }
 
@@ -45,6 +47,8 @@ export class NewArticleComponent implements OnInit {
       });
     }
   }
-
+  goBack(): void {
+    this.location.back();
+  }
 
 }

@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {LoginRequest} from "../../interfaces/loginRequest.interface";
 import {AuthSuccess} from "../../interfaces/authSuccess.interface";
 import {TokenService} from "../../../../core/services/token.service";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-login',
@@ -21,10 +22,13 @@ export class LoginComponent {
     password: ['', [Validators.required, Validators.min(8)]]
   });
 
-  constructor(private authService: AuthService,
-              private fb: FormBuilder,
-              private router: Router,
-              private tokenService: TokenService) {
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private router: Router,
+    private tokenService: TokenService,
+    private location: Location
+  ) {
     if (this.tokenService.isTokenValid()) {
       this.router.navigate(['themes']);
     }
@@ -45,20 +49,8 @@ export class LoginComponent {
     });
   }
 
-
-  // public submit(): void {
-  //   const loginRequest = this.form.value as LoginRequest;
-  //   this.authService.login(loginRequest).subscribe(
-  //     (response: AuthSuccess) => {
-  //       localStorage.setItem('token', response.token);
-  //       this.authService.me().subscribe((user: User) => {
-  //         this.sessionService.logIn(user);
-  //         this.router.navigate(['/themes'])
-  //       });
-  //       this.router.navigate(['/themes'])
-  //     },
-  //     error => this.onError = true
-  //   );
-  // }
+  goBack(): void {
+    this.location.back();
+  }
 
 }

@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {RegisterRequest} from "../../interfaces/registerRequest.interface";
 import {AuthSuccess} from "../../interfaces/authSuccess.interface";
 import {TokenService} from "../../../../core/services/token.service";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-register',
@@ -26,7 +27,8 @@ export class RegisterComponent {
   constructor(private authService: AuthService,
               private fb: FormBuilder,
               private tokenService: TokenService,
-              private router: Router) {
+              private router: Router,
+              private location: Location) {
     if (this.tokenService.isTokenValid()) {
       this.router.navigate(['themes']);
     }
@@ -42,5 +44,7 @@ export class RegisterComponent {
       error => this.onError = true
     );
   }
-
+  goBack(): void {
+    this.location.back();
+  }
 }

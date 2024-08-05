@@ -6,6 +6,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ArticleResponse} from "../../interfaces/article.interface";
 import {CommentRequest} from "../../interfaces/comment.interface";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-detail-article',
@@ -23,7 +24,8 @@ export class DetailArticleComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private matSnackBar: MatSnackBar
+    private matSnackBar: MatSnackBar,
+    private location: Location
   ) {
   }
 
@@ -50,5 +52,7 @@ export class DetailArticleComponent implements OnInit {
       });
     }
   }
-
+  goBack(): void {
+    this.location.back();
+  }
 }
