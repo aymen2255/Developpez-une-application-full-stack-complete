@@ -1,30 +1,40 @@
-<div class="articles-header">
-  <button mat-raised-button color="primary" type="button" class="create-button" routerLink="create">
-    Créer un article
-  </button>
-  <button type="button" class="sort-button" (click)="sortArticles()">
-    <span>Trier par </span>
-  </button>
-</div>
+<div class="list">
+  <div class="articles-header">
+    <button mat-raised-button color="primary" type="button" class="create-button" routerLink="create">
+      Créer un article
+    </button>
+    <div class="tri">
+      <a class="tri-link" (click)="sortArticles()">Trier par </a>
+      <mat-icon *ngIf="sortAscending">arrow_downward</mat-icon>
+      <mat-icon *ngIf="!sortAscending">arrow_upward</mat-icon>
+    </div>
 
-
-<div class="article-list">
+    <!--    <a type="button" class="sort-button" (click)="sortArticles()">-->
+<!--&lt;!&ndash;      <span>Trier par </span>&ndash;&gt;-->
+<!--&lt;!&ndash;      <span>Trier par {{ sortAscending  ? '↓' : '↑' }}</span>&ndash;&gt;-->
+<!--      Trier par<span class="material-icons">-->
+<!--arrow_downward-->
+<!--</span>-->
+<!--    </a>-->
+  </div>
   <div *ngIf="articles.length === 0">Aucun article trouvé.</div>
-  <div *ngFor="let article of articles" class="article-item">
-    <mat-card class="card-class" appearance="outlined">
-      <mat-card-header class="card-header">
-        <mat-card-title [routerLink]="['detail',article.id]">{{ article.title }}</mat-card-title>
-        <div class="sub-header">
-          <mat-card-subtitle class="card-subtitle">{{ article.created_at | date:'longDate' }}</mat-card-subtitle>
-          <mat-card-subtitle class="card-subtitle">{{ article.author.username }}</mat-card-subtitle>
-        </div>
-      </mat-card-header>
-      <mat-card-content>
-        <p>{{ article.content }}</p>
-      </mat-card-content>
-    </mat-card>
+  <div class="list-content">
+    <div *ngFor="let article of articles" class="list-item"  [routerLink]="['detail',article.id]">
+      <mat-card class="card-class" appearance="outlined">
+        <mat-card-header class="card-header">
+          <mat-card-title>{{ article.title }}</mat-card-title>
+          <div class="sub-header">
+            <mat-card-subtitle
+              class="card-subtitle">{{ article.created_at | date:'dd-MM-yy' }}</mat-card-subtitle>
+            <mat-card-subtitle class="card-subtitle">{{ article.author.username }}</mat-card-subtitle>
+          </div>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ article.content }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
 </div>
-
 
 

@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  //width: 100%;
 }
 .article-content{
   display: flex;
@@ -60,4 +59,25 @@ mat-form-field {
 }
 .rotate-button:hover {
   background-color: transparent;
+}
+@media (max-width: 768px) {
+  .comment-content{
+    display: flex;
+    justify-content: center;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    gap: 50px;
+    width: 80%;
+    margin-bottom: 20px;
+    margin-left: 20px;
+  }
+  .rotate-button {
+    transform: rotate(-45deg) scale(2);
+    position:relative;
+    top: -10px;
+    left: -50px;
+  }
+  .mat-form-field{
+    min-width: 100%;
+  }
 }

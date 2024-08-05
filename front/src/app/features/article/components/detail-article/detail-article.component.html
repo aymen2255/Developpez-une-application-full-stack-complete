@@ -22,7 +22,7 @@
       Commentaires
     </div>
     <div *ngFor="let comment of article.comments" class="comment-content">
-      <div class="comment-author">user name</div>
+      <div class="comment-author">{{comment.author.username}}</div>
       <div class="item-content">
         <mat-card class="card-class" appearance="outlined">
           <mat-card-content>
@@ -34,10 +34,10 @@
   </div>
 
   <form class="add-comment-form" [formGroup]="commentForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="outline">
-      <mat-label>Contenu de l'article</mat-label>
+    <mat-form-field appearance="outline"class="mat-form-field">
+      <mat-label>Écrivez ici votre commentaire</mat-label>
       <textarea matInput rows="8" formControlName="content" data-cy="content-textarea"></textarea>
-      <mat-error *ngIf="commentForm.get('content')?.hasError('required')">Le contenu de l'article est requis</mat-error>
+      <mat-error *ngIf="commentForm.get('content')?.hasError('required')">Le commentaire est requis</mat-error>
     </mat-form-field>
     <div>
       <button fxFlex="10" mat-button type="submit" class="rotate-button">

@@ -19,6 +19,7 @@ export class ArticleListComponent implements OnInit {
   ngOnInit(): void {
     this.articleService.all().subscribe(response => {
       this.articles = response.articles;
+      console.log(this.articles)
     });
   }
 

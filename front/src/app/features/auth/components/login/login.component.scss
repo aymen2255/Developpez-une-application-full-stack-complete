@@ -1,0 +1,34 @@
+.auth{
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-fields {
+  display: flex;
+  flex-direction: column;
+}
+.mat-card-header{
+  display: flex;
+  justify-content: center;
+}
+.submit-button{
+  width: 150px;
+}
+.logo{
+ display: none;
+}
+@media (max-width: 768px) {
+  .logo{
+    display: flex;
+    margin-top: -100px;
+    max-width: 300px;
+  }
+}
+
