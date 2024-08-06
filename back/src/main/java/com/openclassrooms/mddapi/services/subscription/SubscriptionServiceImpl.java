@@ -3,9 +3,7 @@ package com.openclassrooms.mddapi.services.subscription;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Service;
-
 import com.openclassrooms.mddapi.Exception.EntityNotFoundException;
 import com.openclassrooms.mddapi.Exception.SubscriptionAlreadyExistsException;
 import com.openclassrooms.mddapi.entities.Subscription;
@@ -14,7 +12,6 @@ import com.openclassrooms.mddapi.entities.User;
 import com.openclassrooms.mddapi.repositories.SubscriptionRepository;
 import com.openclassrooms.mddapi.repositories.ThemeRepository;
 import com.openclassrooms.mddapi.services.user.UserService;
-
 import lombok.RequiredArgsConstructor;
 
 @Service

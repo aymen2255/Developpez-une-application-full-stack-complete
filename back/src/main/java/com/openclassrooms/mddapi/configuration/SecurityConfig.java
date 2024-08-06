@@ -43,7 +43,6 @@ public class SecurityConfig {
 			.permitAll().anyRequest().authenticated()
 		)
 				.sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//				.authenticationProvider(authenticationProvider())
 				.exceptionHandling(e -> e
 						.accessDeniedHandler((request, response, accessDeniedException) -> response.setStatus(403))
 						.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))

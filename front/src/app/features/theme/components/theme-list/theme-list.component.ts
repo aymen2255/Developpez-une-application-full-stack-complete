@@ -29,12 +29,10 @@ export class ThemeListComponent implements OnInit {
   }
 
   subscribe(themeId: number): void {
-    console.log('themeid=======>'+themeId)
     this.subscriptionService.subscribeToTheme(themeId).subscribe(
       response => {
         this.matSnackBar.open('Article créé', 'Close', { duration: 3000 });
         this.updateThemeSubscriptionStatus(themeId, true);
-        console.log('Abonnement réussi', response);
       },
       error => {
         console.error('Erreur lors de l\'abonnement', error);

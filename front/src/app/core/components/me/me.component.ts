@@ -51,7 +51,6 @@ export class MeComponent implements OnInit {
   public submit(): void {
     if (this.userForm.valid) {
       this.userService.updateUser(this.userForm.value).subscribe(response => {
-        console.log('JWT updated:', response);
         this.matSnackBar.open('Modifié avec succès', 'Close', { duration: 3000 });
         this.router.navigate(['me']);
       }, error => {

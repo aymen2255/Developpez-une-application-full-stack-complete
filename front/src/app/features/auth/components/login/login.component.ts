@@ -43,7 +43,6 @@ export class LoginComponent {
         this.router.navigate(['themes']);
       },
       error: (err) => {
-        console.log(err);
         this.onError = true;
       }
     });
