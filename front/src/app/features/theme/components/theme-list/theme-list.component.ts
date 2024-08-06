@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Observable, Subject} from "rxjs";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Observable, Subject, takeUntil} from "rxjs";
 import {ThemeService} from "../../services/theme.service";
 import {Themes} from "../../interfaces/themes.interface";
 import {Theme} from "../../interfaces/theme.interface";
@@ -11,27 +11,37 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   templateUrl: './theme-list.component.html',
   styleUrls: ['./theme-list.component.scss']
 })
-export class ThemeListComponent implements OnInit {
+export class ThemeListComponent implements OnInit, OnDestroy {
 
   themes: Theme[] = [];
+  private destroy$ !: Subject<boolean>;
 
   constructor(
     private themeService: ThemeService,
     private subscriptionService: SubscriptionService,
     private matSnackBar: MatSnackBar,
-    ) {
+  ) {
   }
 
   ngOnInit(): void {
-    this.themeService.all().subscribe(response => {
-      this.themes = response.themes;
-    });
+    this.destroy$ = new Subject<boolean>();
+    this.themeService.all()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(response => {
+        this.themes = response.themes;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
   }
 
   subscribe(themeId: number): void {
-    this.subscriptionService.subscribeToTheme(themeId).subscribe(
+    this.subscriptionService.subscribeToTheme(themeId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
       response => {
-        this.matSnackBar.open('Article créé', 'Close', { duration: 3000 });
+        this.matSnackBar.open('Article créé', 'Close', {duration: 3000});
         this.updateThemeSubscriptionStatus(themeId, true);
       },
       error => {

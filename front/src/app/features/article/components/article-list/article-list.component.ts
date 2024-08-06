@@ -1,25 +1,33 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ArticleService} from "../../services/article.service";
 import {ArticleResponse} from "../../interfaces/article.interface";
+import {Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'app-article-list',
   templateUrl: './article-list.component.html',
   styleUrls: ['./article-list.component.scss']
 })
-export class ArticleListComponent implements OnInit {
+export class ArticleListComponent implements OnInit, OnDestroy {
 
-  // public articles$: Observable<Articles> = this.articleService.all();
   articles: ArticleResponse[] = [];
   sortAscending: boolean = false; // Variable pour suivre l'ordre de tri
+  private destroy$ !: Subject<boolean>;
 
   constructor(private articleService: ArticleService) {
   }
 
   ngOnInit(): void {
-    this.articleService.all().subscribe(response => {
-      this.articles = response.articles;
-    });
+    this.destroy$ = new Subject<boolean>();
+    this.articleService.all()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(response => {
+        this.articles = response.articles;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
   }
 
   sortArticles(): void {
