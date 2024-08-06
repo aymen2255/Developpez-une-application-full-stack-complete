@@ -1,25 +1,71 @@
-# P6-Full-Stack-reseau-dev
 
-## Front
+# Projet Openclassroom: Développez une application full-stack complète
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
+ 
 
-Don't forget to install your node_modules before starting (`npm install`).
+Generated with Java 11 and Angular CLI version 17.
 
+
+
+
+## Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/aymen2255/Developpez-une-application-full-stack-complete.git
+```
+
+### Install Backend
+
+```bash
+cd back
+mvn clean install
+```
+### Run Backend Application 
+
+```bash
+mvn spring-boot:run
+```
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your application.properties file
+
+`db_name`
+
+`db_username`
+
+`db_password`
+
+`secretKey`
+
+`jwt_expiration`
+
+### MySQL
+
+SQL script for creating the schema is available ressources/data.sql
+
+### Install Frontend
+
+```bash
+cd front
+npm install
+```
 ### Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200`. The application will automatically reload if you change any of the source files.
 
-### Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Build Frontend Application 
 
-### Where to start
+```bash
+Run ng build to build the project. The build artifacts will be stored in the dist/ directory.
+```
 
-As you may have seen if you already started the app, a simple home page containing a logo, a title and a button is available. If you take a look at its code (in the `home.component.html`) you will see that an external UI library is already configured in the project.
+#### If you use sql data file, there are a user for demonstration
 
-This library is `@angular/material`, it's one of the most famous in the angular ecosystem. As you can see on their docs (https://material.angular.io/), it contains a lot of highly customizable components that will help you design your interfaces quickly.
-
-Note: I recommend to use material however it's not mandatory, if you prefer you can get ride of it.
-
-Good luck!
+```bash
+    email: user@user.com
+    password:  Start1234!
+```
